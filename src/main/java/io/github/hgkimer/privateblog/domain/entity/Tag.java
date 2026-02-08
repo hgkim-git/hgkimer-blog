@@ -40,7 +40,7 @@ public class Tag {
     }
 
     public static Tag of(String name, String slug) {
-        return Tag.builder().name(name).slug(slug).build();
+        return new Tag(name, slug);
     }
 
     public void update(String name, String slug) {

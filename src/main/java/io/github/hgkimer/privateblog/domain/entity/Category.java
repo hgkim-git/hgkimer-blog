@@ -43,11 +43,7 @@ public class Category extends BaseTimeEntity {
     }
 
     public static Category of(String name, String slug, Integer displayOrder) {
-        return Category.builder()
-            .name(name)
-            .slug(slug)
-            .displayOrder(displayOrder)
-            .build();
+        return new Category(name, slug, displayOrder);
     }
 
     public void update(String name, String slug, Integer displayOrder) {
