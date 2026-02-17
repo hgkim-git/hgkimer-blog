@@ -52,7 +52,6 @@ class PostServiceTest {
 
     @BeforeEach
     void setUp() {
-        System.out.println("=== setUp ===");
         User author = User.builder()
             .email("admin@example.com")
             .password("password")
@@ -74,7 +73,6 @@ class PostServiceTest {
 
     @AfterEach
     void tearDown() {
-        System.out.println("=== tearDown ===");
         postRepository.deleteAll();
         tagRepository.deleteAll();
         userRepository.deleteAll();
