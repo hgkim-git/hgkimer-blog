@@ -10,10 +10,9 @@ class UserTest {
 
     @Test
     void builder() {
-        User user = User.builder().id(1L).email("test@example.com").password("password")
+        User user = User.builder().email("test@example.com").password("password")
             .role(UserRole.VISITOR).build();
         assertNotNull(user);
-        assertEquals(1L, user.getId());
         assertEquals("test@example.com", user.getEmail());
         assertEquals("password", user.getPassword());
         assertEquals(UserRole.VISITOR, user.getRole());
