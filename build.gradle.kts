@@ -102,6 +102,9 @@ dependencies {
     // H2
     runtimeOnly("com.h2database:h2")
 
+    // Logging (SQL 바인딩 파라미터 출력)
+    implementation("com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.2")
+
     // Test
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
