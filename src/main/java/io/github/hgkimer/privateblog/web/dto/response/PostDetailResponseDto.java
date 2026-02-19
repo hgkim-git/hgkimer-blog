@@ -1,6 +1,7 @@
 package io.github.hgkimer.privateblog.web.dto.response;
 
 import io.github.hgkimer.privateblog.domain.entity.Post;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public record PostDetailResponseDto(
@@ -13,6 +14,7 @@ public record PostDetailResponseDto(
     String slug,
     String status,
     Integer viewCount,
+    LocalDateTime createdAt,
     List<TagResponseDto> tags
 ) {
 
@@ -30,6 +32,7 @@ public record PostDetailResponseDto(
             post.getSlug(),
             post.getStatus().name(),
             post.getViewCount(),
+            post.getCreatedAt(),
             tags
         );
     }
