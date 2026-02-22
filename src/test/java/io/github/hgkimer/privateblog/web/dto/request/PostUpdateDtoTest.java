@@ -6,13 +6,13 @@ import org.junit.jupiter.api.BeforeEach;
 
 class PostUpdateDtoTest {
 
-    private Validator validator;
+  private Validator validator;
 
-    @BeforeEach
-    void setUp() {
-        validator = Validation.buildDefaultValidatorFactory().getValidator();
-    }
+  @BeforeEach
+  void setUp() {
+    validator = Validation.buildDefaultValidatorFactory().getValidator();
+  }
 
-    // Same as PostCreateDtoTest
+  // Same as PostCreateDtoTest
 
 }

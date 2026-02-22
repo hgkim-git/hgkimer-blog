@@ -13,55 +13,55 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-    boolean existsBySlug(String slug);
+  boolean existsBySlug(String slug);
 
-    @Query("SELECT p FROM Post p "
-        + "JOIN FETCH p.category "
-        + "JOIN FETCH p.author "
-        + "WHERE p.id = :id")
-    Post findByIdWithDetails(@Param("id") Long id);
+  @Query("SELECT p FROM Post p "
+      + "JOIN FETCH p.category "
+      + "JOIN FETCH p.author "
+      + "WHERE p.id = :id")
+  Post findByIdWithDetails(@Param("id") Long id);
 
-    @Query("SELECT p FROM Post p "
-        + "JOIN FETCH p.category "
-        + "JOIN FETCH p.author "
-        + "WHERE p.slug = :slug")
-    Optional<Post> findBySlugWithDetails(@Param("slug") String slug);
+  @Query("SELECT p FROM Post p "
+      + "JOIN FETCH p.category "
+      + "JOIN FETCH p.author "
+      + "WHERE p.slug = :slug")
+  Optional<Post> findBySlugWithDetails(@Param("slug") String slug);
 
-    @Query(value = "SELECT p FROM Post p "
-        + "LEFT JOIN FETCH p.category "
-        + "JOIN FETCH p.author "
-        + "WHERE p.status = :status "
-        + "AND (:keyword IS NULL OR "
-        + "    (LOWER(p.title) LIKE LOWER(CONCAT('%', :keyword, '%')) OR "
-        + "     LOWER(p.content) LIKE LOWER(CONCAT('%', :keyword, '%')))) ",
-        countQuery = "SELECT COUNT(p) FROM Post p "
-            + "WHERE p.status = :status "
-            + "AND (:keyword IS NULL OR "
-            + "    (LOWER(p.title) LIKE LOWER(CONCAT('%', :keyword, '%')) OR "
-            + "     LOWER(p.content) LIKE LOWER(CONCAT('%', :keyword, '%')))) ")
-    Page<Post> findAllPosts(
-        @Param("status") PostStatus status,
-        @Param("keyword") String keyword,
-        Pageable pageable);
+  @Query(value = "SELECT p FROM Post p "
+      + "LEFT JOIN FETCH p.category "
+      + "JOIN FETCH p.author "
+      + "WHERE p.status = :status "
+      + "AND (:keyword IS NULL OR "
+      + "    (LOWER(p.title) LIKE LOWER(CONCAT('%', :keyword, '%')) OR "
+      + "     LOWER(p.content) LIKE LOWER(CONCAT('%', :keyword, '%')))) ",
+      countQuery = "SELECT COUNT(p) FROM Post p "
+          + "WHERE p.status = :status "
+          + "AND (:keyword IS NULL OR "
+          + "    (LOWER(p.title) LIKE LOWER(CONCAT('%', :keyword, '%')) OR "
+          + "     LOWER(p.content) LIKE LOWER(CONCAT('%', :keyword, '%')))) ")
+  Page<Post> findAllPosts(
+      @Param("status") PostStatus status,
+      @Param("keyword") String keyword,
+      Pageable pageable);
 
-    @Query(value = "SELECT p FROM Post p "
-        + "LEFT JOIN FETCH p.category "
-        + "JOIN FETCH p.author "
-        + "WHERE p.status = :status "
-        + "AND p.category.id = :categoryId "
-        + "AND (:keyword IS NULL OR "
-        + "    (LOWER(p.title) LIKE LOWER(CONCAT('%', :keyword, '%')) OR "
-        + "     LOWER(p.content) LIKE LOWER(CONCAT('%', :keyword, '%')))) ",
-        countQuery = "SELECT COUNT(p) FROM Post p "
-            + "WHERE p.status = :status "
-            + "AND p.category.id = :categoryId "
-            + "AND (:keyword IS NULL OR "
-            + "    (LOWER(p.title) LIKE LOWER(CONCAT('%', :keyword, '%')) OR "
-            + "     LOWER(p.content) LIKE LOWER(CONCAT('%', :keyword, '%')))) ")
-    Page<Post> findAllPostsByCategoryId(
-        @Param("status") PostStatus status,
-        @Param("categoryId") Long categoryId,
-        @Param("keyword") String keyword,
-        Pageable pageable);
+  @Query(value = "SELECT p FROM Post p "
+      + "LEFT JOIN FETCH p.category "
+      + "JOIN FETCH p.author "
+      + "WHERE p.status = :status "
+      + "AND p.category.id = :categoryId "
+      + "AND (:keyword IS NULL OR "
+      + "    (LOWER(p.title) LIKE LOWER(CONCAT('%', :keyword, '%')) OR "
+      + "     LOWER(p.content) LIKE LOWER(CONCAT('%', :keyword, '%')))) ",
+      countQuery = "SELECT COUNT(p) FROM Post p "
+          + "WHERE p.status = :status "
+          + "AND p.category.id = :categoryId "
+          + "AND (:keyword IS NULL OR "
+          + "    (LOWER(p.title) LIKE LOWER(CONCAT('%', :keyword, '%')) OR "
+          + "     LOWER(p.content) LIKE LOWER(CONCAT('%', :keyword, '%')))) ")
+  Page<Post> findAllPostsByCategoryId(
+      @Param("status") PostStatus status,
+      @Param("categoryId") Long categoryId,
+      @Param("keyword") String keyword,
+      Pageable pageable);
 
 }

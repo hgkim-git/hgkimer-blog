@@ -8,7 +8,7 @@ public record TagResponseDto(
     String slug
 ) {
 
-    public static TagResponseDto from(Tag tag) {
-        return new TagResponseDto(tag.getId(), tag.getName(), tag.getSlug());
-    }
+  public static TagResponseDto from(Tag tag) {
+    return new TagResponseDto(tag.getId(), tag.getName(), tag.getSlug());
+  }
 }

@@ -16,31 +16,31 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 class TagServiceTest {
 
-    @Mock
-    private TagRepository tagRepository;
+  @Mock
+  private TagRepository tagRepository;
 
-    @InjectMocks
-    private TagService tagService;
+  @InjectMocks
+  private TagService tagService;
 
-    private Tag tag;
+  private Tag tag;
 
-    @BeforeEach
-    void setUp() {
-        tag = Tag.builder().name("test").slug("test").build();
-    }
+  @BeforeEach
+  void setUp() {
+    tag = Tag.builder().name("test").slug("test").build();
+  }
 
-    @Test
-    void createTag() {
-        given(tagRepository.save(any(Tag.class))).willReturn(tag);
-        tag = tagService.createTag(tag);
-        assertThat(tag).isNotNull();
-        assertThat(tag.getName()).isEqualTo("test");
-        assertThat(tag.getSlug()).isEqualTo("test");
-    }
+  @Test
+  void createTag() {
+    given(tagRepository.save(any(Tag.class))).willReturn(tag);
+    tag = tagService.createTag(tag);
+    assertThat(tag).isNotNull();
+    assertThat(tag.getName()).isEqualTo("test");
+    assertThat(tag.getSlug()).isEqualTo("test");
+  }
 
-    @Test
-    void deleteTag() {
-        tagService.deleteTag(tag.getId());
-        assertThat(tagRepository.findAll()).isEmpty();
-    }
+  @Test
+  void deleteTag() {
+    tagService.deleteTag(tag.getId());
+    assertThat(tagRepository.findAll()).isEmpty();
+  }
 }

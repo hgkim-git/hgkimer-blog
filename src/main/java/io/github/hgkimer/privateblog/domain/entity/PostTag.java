@@ -23,22 +23,22 @@ import lombok.ToString;
 @ToString
 public class PostTag extends BaseTimeEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "id")
+  private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "post_id")
-    private Post post;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "post_id")
+  private Post post;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tag_id")
-    private Tag tag;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "tag_id")
+  private Tag tag;
 
-    @Builder
-    public PostTag(Post post, Tag tag) {
-        this.post = post;
-        this.tag = tag;
-    }
+  @Builder
+  public PostTag(Post post, Tag tag) {
+    this.post = post;
+    this.tag = tag;
+  }
 }

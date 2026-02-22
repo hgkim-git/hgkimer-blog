@@ -8,13 +8,13 @@ import org.junit.jupiter.api.Test;
 
 class UserTest {
 
-    @Test
-    void builder() {
-        User user = User.builder().email("test@example.com").password("password")
-            .role(UserRole.VISITOR).build();
-        assertNotNull(user);
-        assertEquals("test@example.com", user.getEmail());
-        assertEquals("password", user.getPassword());
-        assertEquals(UserRole.VISITOR, user.getRole());
-    }
+  @Test
+  void builder() {
+    User user = User.builder().email("test@example.com").password("password")
+        .role(UserRole.VISITOR).build();
+    assertNotNull(user);
+    assertEquals("test@example.com", user.getEmail());
+    assertEquals("password", user.getPassword());
+    assertEquals(UserRole.VISITOR, user.getRole());
+  }
 }

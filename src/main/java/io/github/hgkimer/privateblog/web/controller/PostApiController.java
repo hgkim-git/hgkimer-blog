@@ -35,52 +35,52 @@ import org.springframework.web.bind.annotation.RestController;
 @Validated
 public class PostApiController {
 
-    private final PostService postService;
+  private final PostService postService;
 
-    @PostMapping()
-    public ResponseEntity<PostDetailResponseDto> createPost(
-        @RequestBody @Valid PostCreateDto postCreateDto) {
-        // TODO: Authorization check
-        // TODO: 새로운 태그는 클라이언트에서 먼저 처리하여 게시글 생성 요청에는 모두 존재하는 태그만 전달
-        PostDetailResponseDto responseDto = PostDetailResponseDto.from(
-            postService.createPost(postCreateDto));
-        return ResponseEntity.status(HttpStatus.CREATED).body(responseDto);
-    }
+  @PostMapping()
+  public ResponseEntity<PostDetailResponseDto> createPost(
+      @RequestBody @Valid PostCreateDto postCreateDto) {
+    // TODO: Authorization check
+    // TODO: 새로운 태그는 클라이언트에서 먼저 처리하여 게시글 생성 요청에는 모두 존재하는 태그만 전달
+    PostDetailResponseDto responseDto = PostDetailResponseDto.from(
+        postService.createPost(postCreateDto));
+    return ResponseEntity.status(HttpStatus.CREATED).body(responseDto);
+  }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deletePost(@PathVariable @Positive Long id) {
-        postService.deletePost(id);
-        return ResponseEntity.noContent().build();
-    }
+  @DeleteMapping("/{id}")
+  public ResponseEntity<Object> deletePost(@PathVariable @Positive Long id) {
+    postService.deletePost(id);
+    return ResponseEntity.noContent().build();
+  }
 
-    @PatchMapping("/{id}")
-    public ResponseEntity<PostDetailResponseDto> updatePost(@PathVariable @Positive Long id,
-        @Valid @RequestBody PostUpdateDto postUpdateDto) {
-        // TODO: Authorization check
-        PostDetailResponseDto responseDto = PostDetailResponseDto.from(
-            postService.updatePost(id, postUpdateDto));
-        return ResponseEntity.ok(responseDto);
-    }
+  @PatchMapping("/{id}")
+  public ResponseEntity<PostDetailResponseDto> updatePost(@PathVariable @Positive Long id,
+      @Valid @RequestBody PostUpdateDto postUpdateDto) {
+    // TODO: Authorization check
+    PostDetailResponseDto responseDto = PostDetailResponseDto.from(
+        postService.updatePost(id, postUpdateDto));
+    return ResponseEntity.ok(responseDto);
+  }
 
-    @GetMapping("/{slug}")
-    public ResponseEntity<PostDetailResponseDto> getPostBySlug(
-        @PathVariable @Pattern(regexp = "^[a-z0-9-]+$") @NotBlank String slug) {
-        PostDetailResponseDto post = postService.getPostBySlug(slug);
-        return ResponseEntity.ok(post);
-    }
+  @GetMapping("/{slug}")
+  public ResponseEntity<PostDetailResponseDto> getPostBySlug(
+      @PathVariable @Pattern(regexp = "^[a-z0-9-]+$") @NotBlank String slug) {
+    PostDetailResponseDto post = postService.getPostBySlug(slug);
+    return ResponseEntity.ok(post);
+  }
 
-    @GetMapping("")
-    public ResponseEntity<Page<PostSummaryResponseDto>> getPosts(
-        @RequestParam(required = false) @Pattern(regexp = "^[a-z0-9-]+$") String categorySlug,
-        @RequestParam(required = false) @Size(max = 50) String keyword,
-        // size=10(default), page=0(default)
-        @PageableDefault(direction = Sort.Direction.DESC, sort = "createdAt")
-        Pageable pageable
-    ) {
-        Page<PostSummaryResponseDto> list = categorySlug == null ? postService.getPostList(keyword,
-            pageable) : postService.getCategorizedPostList(categorySlug, keyword, pageable);
-        return ResponseEntity.ok(list);
-    }
+  @GetMapping("")
+  public ResponseEntity<Page<PostSummaryResponseDto>> getPosts(
+      @RequestParam(required = false) @Pattern(regexp = "^[a-z0-9-]+$") String categorySlug,
+      @RequestParam(required = false) @Size(max = 50) String keyword,
+      // size=10(default), page=0(default)
+      @PageableDefault(direction = Sort.Direction.DESC, sort = "createdAt")
+      Pageable pageable
+  ) {
+    Page<PostSummaryResponseDto> list = categorySlug == null ? postService.getPostList(keyword,
+        pageable) : postService.getCategorizedPostList(categorySlug, keyword, pageable);
+    return ResponseEntity.ok(list);
+  }
 
 
 }

@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class MainController {
 
-    @RequestMapping("")
-    public String landing() {
-        return "redirect:/posts";
-    }
+  @RequestMapping("")
+  public String landing() {
+    return "redirect:/posts";
+  }
 }

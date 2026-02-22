@@ -10,42 +10,42 @@ public record ErrorResponse(
     List<FieldErrorResponse> fieldErrors
 ) {
 
-    public static ErrorResponse of(ErrorCode errorCode) {
-        return new ErrorResponse(
-            errorCode.getCode(),
-            errorCode.getMessage(),
-            LocalDateTime.now(),
-            List.of()
-        );
-    }
+  public static ErrorResponse of(ErrorCode errorCode) {
+    return new ErrorResponse(
+        errorCode.getCode(),
+        errorCode.getMessage(),
+        LocalDateTime.now(),
+        List.of()
+    );
+  }
 
-    public static ErrorResponse of(ErrorCode errorCode, String message) {
-        return new ErrorResponse(
-            errorCode.getCode(),
-            message,
-            LocalDateTime.now(),
-            List.of()
-        );
-    }
+  public static ErrorResponse of(ErrorCode errorCode, String message) {
+    return new ErrorResponse(
+        errorCode.getCode(),
+        message,
+        LocalDateTime.now(),
+        List.of()
+    );
+  }
 
-    public static ErrorResponse of(ErrorCode errorCode,
-        List<FieldErrorResponse> fieldErrors) {
-        return new ErrorResponse(
-            errorCode.getCode(),
-            errorCode.getMessage(),
-            LocalDateTime.now(),
-            fieldErrors
-        );
-    }
+  public static ErrorResponse of(ErrorCode errorCode,
+      List<FieldErrorResponse> fieldErrors) {
+    return new ErrorResponse(
+        errorCode.getCode(),
+        errorCode.getMessage(),
+        LocalDateTime.now(),
+        fieldErrors
+    );
+  }
 
-    public static ErrorResponse of(ErrorCode errorCode, String message,
-        List<FieldErrorResponse> fieldErrors) {
-        return new ErrorResponse(
-            errorCode.getCode(),
-            message,
-            LocalDateTime.now(),
-            fieldErrors
-        );
-    }
+  public static ErrorResponse of(ErrorCode errorCode, String message,
+      List<FieldErrorResponse> fieldErrors) {
+    return new ErrorResponse(
+        errorCode.getCode(),
+        message,
+        LocalDateTime.now(),
+        fieldErrors
+    );
+  }
 
 }

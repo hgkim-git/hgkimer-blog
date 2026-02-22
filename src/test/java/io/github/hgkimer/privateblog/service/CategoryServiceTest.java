@@ -15,63 +15,63 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class CategoryServiceTest {
 
-    @Autowired
-    private CategoryRepository categoryRepository;
+  @Autowired
+  private CategoryRepository categoryRepository;
 
-    @Autowired
-    private CategoryService categoryService;
+  @Autowired
+  private CategoryService categoryService;
 
-    private Category category;
+  private Category category;
 
-    @BeforeEach
-    void setUp() {
-        category = Category.builder().name("test2").slug("test2").build();
-    }
+  @BeforeEach
+  void setUp() {
+    category = Category.builder().name("test2").slug("test2").build();
+  }
 
-    @AfterEach
-    void tearDown() {
-        categoryRepository.deleteAll();
-        categoryRepository.flush();
-    }
+  @AfterEach
+  void tearDown() {
+    categoryRepository.deleteAll();
+    categoryRepository.flush();
+  }
 
-    @Test
-    void createCategory() {
-        categoryService.createCategory(category);
-        assertNotNull(category.getId());
-        Long id = category.getId();
-        Category found = categoryRepository.findById(id).orElseThrow();
-        assertEquals(category.getId(), found.getId());
-        assertEquals(category.getName(), found.getName());
-        assertEquals(category.getSlug(), found.getSlug());
-    }
+  @Test
+  void createCategory() {
+    categoryService.createCategory(category);
+    assertNotNull(category.getId());
+    Long id = category.getId();
+    Category found = categoryRepository.findById(id).orElseThrow();
+    assertEquals(category.getId(), found.getId());
+    assertEquals(category.getName(), found.getName());
+    assertEquals(category.getSlug(), found.getSlug());
+  }
 
-    @Test
-    void updateCategory() {
-        categoryService.createCategory(category);
-        Category found = categoryRepository.findById(category.getId()).orElseThrow();
-        Category updatedCategory = Category.builder().name("updated").slug("updated").build();
-        categoryService.updateCategory(found.getId(), updatedCategory);
-        found = categoryRepository.findById(found.getId()).orElseThrow();
-        assertEquals(updatedCategory.getName(), found.getName());
-        assertEquals(updatedCategory.getSlug(), found.getSlug());
-    }
+  @Test
+  void updateCategory() {
+    categoryService.createCategory(category);
+    Category found = categoryRepository.findById(category.getId()).orElseThrow();
+    Category updatedCategory = Category.builder().name("updated").slug("updated").build();
+    categoryService.updateCategory(found.getId(), updatedCategory);
+    found = categoryRepository.findById(found.getId()).orElseThrow();
+    assertEquals(updatedCategory.getName(), found.getName());
+    assertEquals(updatedCategory.getSlug(), found.getSlug());
+  }
 
-    @Test
-    public void deleteCategory() {
-        categoryService.createCategory(category);
-        categoryService.deleteCategory(category.getId());
-        assertEquals(0, categoryRepository.findAll().size());
-    }
+  @Test
+  public void deleteCategory() {
+    categoryService.createCategory(category);
+    categoryService.deleteCategory(category.getId());
+    assertEquals(0, categoryRepository.findAll().size());
+  }
 
 
-    @Test
-    void getCategoryById() {
-        categoryService.createCategory(category);
-        assertNotNull(category.getId());
+  @Test
+  void getCategoryById() {
+    categoryService.createCategory(category);
+    assertNotNull(category.getId());
 
-        Category found = categoryService.getCategoryById(category.getId());
-        assertEquals(category.getId(), found.getId());
-        assertEquals(category.getName(), found.getName());
-        assertEquals(category.getSlug(), found.getSlug());
-    }
+    Category found = categoryService.getCategoryById(category.getId());
+    assertEquals(category.getId(), found.getId());
+    assertEquals(category.getName(), found.getName());
+    assertEquals(category.getSlug(), found.getSlug());
+  }
 }

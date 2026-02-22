@@ -8,7 +8,7 @@ public record CategoryResponseDto(
     String slug
 ) {
 
-    public static CategoryResponseDto from(Category category) {
-        return new CategoryResponseDto(category.getId(), category.getName(), category.getSlug());
-    }
+  public static CategoryResponseDto from(Category category) {
+    return new CategoryResponseDto(category.getId(), category.getName(), category.getSlug());
+  }
 }

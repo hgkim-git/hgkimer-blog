@@ -20,28 +20,28 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class User extends BaseTimeEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "id")
+  private Long id;
 
-    @Column(name = "email", unique = true, nullable = false)
-    private String email;
+  @Column(name = "email", unique = true, nullable = false)
+  private String email;
 
-    @Column(name = "password", nullable = false)
-    private String password;
+  @Column(name = "password", nullable = false)
+  private String password;
 
-    @Column(name = "role", nullable = false)
-    // EnumType.ORDINAL은 순서에 의존하므로 지양
-    @Enumerated(EnumType.STRING)
-    private UserRole role;
+  @Column(name = "role", nullable = false)
+  // EnumType.ORDINAL은 순서에 의존하므로 지양
+  @Enumerated(EnumType.STRING)
+  private UserRole role;
 
-    @Builder
-    public User(String email, String password, UserRole role) {
-        this.email = email;
-        this.password = password;
-        this.role = role;
-    }
+  @Builder
+  public User(String email, String password, UserRole role) {
+    this.email = email;
+    this.password = password;
+    this.role = role;
+  }
 
 
 }

@@ -17,20 +17,20 @@ public record PostSummaryResponseDto(
     List<TagResponseDto> tags
 ) {
 
-    public static PostSummaryResponseDto from(Post post) {
-        Category category = post.getCategory();
-        return new PostSummaryResponseDto(
-            post.getId(),
-            Optional.ofNullable(category).map(CategoryResponseDto::from).orElse(null),
-            post.getTitle(),
-            post.getSummary(),
-            post.getSlug(),
-            post.getViewCount(),
-            post.getCreatedAt(),
-            post.getPostTags()
-                .stream()
-                .map(postTag -> TagResponseDto.from(postTag.getTag()))
-                .toList()
-        );
-    }
+  public static PostSummaryResponseDto from(Post post) {
+    Category category = post.getCategory();
+    return new PostSummaryResponseDto(
+        post.getId(),
+        Optional.ofNullable(category).map(CategoryResponseDto::from).orElse(null),
+        post.getTitle(),
+        post.getSummary(),
+        post.getSlug(),
+        post.getViewCount(),
+        post.getCreatedAt(),
+        post.getPostTags()
+            .stream()
+            .map(postTag -> TagResponseDto.from(postTag.getTag()))
+            .toList()
+    );
+  }
 }

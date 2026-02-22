@@ -15,32 +15,32 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class CategoryService {
 
-    private final CategoryRepository categoryRepository;
+  private final CategoryRepository categoryRepository;
 
-    public Category createCategory(Category category) {
-        return categoryRepository.save(category);
-    }
+  public Category createCategory(Category category) {
+    return categoryRepository.save(category);
+  }
 
-    public void deleteCategory(Long id) {
-        categoryRepository.deleteById(id);
-    }
+  public void deleteCategory(Long id) {
+    categoryRepository.deleteById(id);
+  }
 
-    public Category updateCategory(Long id, Category updatedCategory) {
-        Category category = getCategoryById(id);
-        category.update(updatedCategory.getName(), updatedCategory.getSlug(),
-            updatedCategory.getDisplayOrder());
-        return category;
-    }
+  public Category updateCategory(Long id, Category updatedCategory) {
+    Category category = getCategoryById(id);
+    category.update(updatedCategory.getName(), updatedCategory.getSlug(),
+        updatedCategory.getDisplayOrder());
+    return category;
+  }
 
-    @Transactional(readOnly = true)
-    public List<CategoryResponseDto> getAllCategories() {
-        return categoryRepository.findAllByOrderByDisplayOrderAsc().stream()
-            .map(CategoryResponseDto::from).toList();
-    }
+  @Transactional(readOnly = true)
+  public List<CategoryResponseDto> getAllCategories() {
+    return categoryRepository.findAllByOrderByDisplayOrderAsc().stream()
+        .map(CategoryResponseDto::from).toList();
+  }
 
-    public Category getCategoryById(Long id) {
-        return categoryRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(
-            ErrorCode.CATEGORY_NOT_FOUND, id.toString()));
-    }
+  public Category getCategoryById(Long id) {
+    return categoryRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(
+        ErrorCode.CATEGORY_NOT_FOUND, id.toString()));
+  }
 
 }

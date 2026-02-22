@@ -9,20 +9,20 @@ public record FieldErrorResponse(
     String message
 ) {
 
-    public static FieldErrorResponse from(FieldError fieldError) {
-        return new FieldErrorResponse(
-            fieldError.getField(),
-            fieldError.getRejectedValue(),
-            fieldError.getDefaultMessage()
-        );
-    }
+  public static FieldErrorResponse from(FieldError fieldError) {
+    return new FieldErrorResponse(
+        fieldError.getField(),
+        fieldError.getRejectedValue(),
+        fieldError.getDefaultMessage()
+    );
+  }
 
-    public static FieldErrorResponse from(ConstraintViolation<?> violation) {
-        return new FieldErrorResponse(
-            violation.getPropertyPath().toString(),
-            violation.getInvalidValue(),
-            violation.getMessage()
-        );
-    }
+  public static FieldErrorResponse from(ConstraintViolation<?> violation) {
+    return new FieldErrorResponse(
+        violation.getPropertyPath().toString(),
+        violation.getInvalidValue(),
+        violation.getMessage()
+    );
+  }
 
 }
