@@ -2,8 +2,16 @@
 <html lang="ko"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/blog/common-head :: common-head}">
-  <title></title>
+<head>
+  <meta charset="UTF-8">
+  <title layout:title-pattern="$LAYOUT_TITLE : $CONTENT_TITLE">Dev Blog</title>
+  <!-- Common CSS -->
+  <link rel="stylesheet" th:href="@{/css/common.css}">
+  <link rel="stylesheet" th:href="@{/css/blog-layout.css}">
+  <link rel="stylesheet" th:href="@{/css/blog-components.css}">
+  <link rel="icon" th:href="@{/img/favicon.ico}">
+  <!-- Custom CSS -->
+  <th:block layout:fragment="styles"></th:block>
 </head>
 <body>
 <!-- Header -->
@@ -14,5 +22,7 @@
 <footer th:replace="~{fragments/blog/footer :: footer}"></footer>
 <!-- Common JavaScript-->
 <script th:src="@{/js/common.js}"></script>
+<!-- Custom JS -->
+<th:block layout:fragment="scripts"></th:block>
 </body>
 </html>
