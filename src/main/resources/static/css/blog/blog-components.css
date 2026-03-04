@@ -247,6 +247,30 @@
   border-bottom-color: var(--color-primary);
 }
 
+.post-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 15px;
+}
+
+.post-content th,
+.post-content td {
+  padding: 10px 14px;
+  border: 1px solid var(--border-color);
+  text-align: left;
+}
+
+.post-content th {
+  background-color: var(--bg-secondary);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.post-content tr:nth-child(even) td {
+  background-color: var(--bg-secondary);
+}
+
 /* TOC (Table of Contents) */
 .toc-sidebar {
   position: sticky;
