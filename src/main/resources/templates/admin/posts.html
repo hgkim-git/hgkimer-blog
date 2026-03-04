@@ -35,7 +35,7 @@
       <p class="page-subtitle">전체 게시글을 관리하고 수정할 수 있습니다</p>
     </div>
     <div class="page-actions">
-      <a th:href="@{/admin/posts/form}" class="btn btn-primary">
+      <a class="btn btn-primary" th:href="@{/admin/posts/form}">
         <span>✏️</span>
         <span>새 게시글 작성</span>
       </a>
@@ -48,10 +48,10 @@
       <div class="filter-group">
         <label class="filter-label">검색</label>
         <input
-            type="text"
             class="filter-input"
-            placeholder="제목 또는 내용으로 검색..."
             id="searchInput"
+            placeholder="제목 또는 내용으로 검색..."
+            type="text"
         >
       </div>
       <div class="filter-group">
@@ -99,7 +99,7 @@
         <thead>
         <tr>
           <th class="checkbox-col">
-            <input type="checkbox" class="checkbox" id="selectAll">
+            <input class="checkbox" id="selectAll" type="checkbox">
           </th>
           <th>제목</th>
           <th>카테고리</th>
@@ -112,10 +112,10 @@
         <tbody id="postsTableBody">
         <tr>
           <td style="text-align: center;">
-            <input type="checkbox" class="checkbox row-checkbox" data-id="1">
+            <input class="checkbox row-checkbox" data-id="1" type="checkbox">
           </td>
           <td class="post-title-cell">
-            <a href="#" class="post-title-link">Spring Security와 JWT를 활용한 인증 시스템 구현</a>
+            <a class="post-title-link" href="#">Spring Security와 JWT를 활용한 인증 시스템 구현</a>
           </td>
           <td>Spring</td>
           <td><span class="status-badge published">게시</span></td>
@@ -130,10 +130,10 @@
         </tr>
         <tr>
           <td style="text-align: center;">
-            <input type="checkbox" class="checkbox row-checkbox" data-id="2">
+            <input class="checkbox row-checkbox" data-id="2" type="checkbox">
           </td>
           <td class="post-title-cell">
-            <a href="#" class="post-title-link">JPA N+1 문제 완벽 정리 및 해결 방법</a>
+            <a class="post-title-link" href="#">JPA N+1 문제 완벽 정리 및 해결 방법</a>
           </td>
           <td>Java</td>
           <td><span class="status-badge published">게시</span></td>
@@ -148,10 +148,10 @@
         </tr>
         <tr>
           <td style="text-align: center;">
-            <input type="checkbox" class="checkbox row-checkbox" data-id="3">
+            <input class="checkbox row-checkbox" data-id="3" type="checkbox">
           </td>
           <td class="post-title-cell">
-            <a href="#" class="post-title-link">MySQL 인덱스 설계 전략과 성능 최적화</a>
+            <a class="post-title-link" href="#">MySQL 인덱스 설계 전략과 성능 최적화</a>
           </td>
           <td>Database</td>
           <td><span class="status-badge published">게시</span></td>
@@ -166,10 +166,10 @@
         </tr>
         <tr>
           <td style="text-align: center;">
-            <input type="checkbox" class="checkbox row-checkbox" data-id="4">
+            <input class="checkbox row-checkbox" data-id="4" type="checkbox">
           </td>
           <td class="post-title-cell">
-            <a href="#" class="post-title-link">Docker 컨테이너 배포 자동화 구축하기</a>
+            <a class="post-title-link" href="#">Docker 컨테이너 배포 자동화 구축하기</a>
           </td>
           <td>DevOps</td>
           <td><span class="status-badge draft">임시저장</span></td>
@@ -184,10 +184,10 @@
         </tr>
         <tr>
           <td style="text-align: center;">
-            <input type="checkbox" class="checkbox row-checkbox" data-id="5">
+            <input class="checkbox row-checkbox" data-id="5" type="checkbox">
           </td>
           <td class="post-title-cell">
-            <a href="#" class="post-title-link">Redis를 활용한 Spring 애플리케이션 캐싱 전략</a>
+            <a class="post-title-link" href="#">Redis를 활용한 Spring 애플리케이션 캐싱 전략</a>
           </td>
           <td>Spring</td>
           <td><span class="status-badge published">게시</span></td>
@@ -202,10 +202,10 @@
         </tr>
         <tr>
           <td style="text-align: center;">
-            <input type="checkbox" class="checkbox row-checkbox" data-id="6">
+            <input class="checkbox row-checkbox" data-id="6" type="checkbox">
           </td>
           <td class="post-title-cell">
-            <a href="#" class="post-title-link">Java Stream API 실전 활용법과 성능 고려사항</a>
+            <a class="post-title-link" href="#">Java Stream API 실전 활용법과 성능 고려사항</a>
           </td>
           <td>Java</td>
           <td><span class="status-badge published">게시</span></td>

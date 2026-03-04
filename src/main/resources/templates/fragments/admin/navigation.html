@@ -7,23 +7,27 @@
 <body>
 <aside class="sidebar" th:fragment="navigation">
   <nav class="sidebar-nav">
-    <a th:href="@{/admin/dashboard}" class="nav-item"
-       th:classappend="${#strings.startsWith(currentUri, '/admin/dashboard') ? 'active' : ''}">
+    <a class="nav-item"
+       th:classappend="${#strings.startsWith(currentUri, '/admin/dashboard') ? 'active' : ''}"
+       th:href="@{/admin/dashboard}">
       <span class="nav-icon">📊</span>
       <span>대시보드</span>
     </a>
-    <a th:href="@{/admin/posts}" class="nav-item"
-       th:classappend="${#strings.startsWith(currentUri, '/admin/posts') ? 'active' : ''}">
+    <a class="nav-item"
+       th:classappend="${#strings.startsWith(currentUri, '/admin/posts') ? 'active' : ''}"
+       th:href="@{/admin/posts}">
       <span class="nav-icon">📝</span>
       <span>게시글 관리</span>
     </a>
-    <a th:href="@{/admin/categories}" class="nav-item"
-       th:classappend="${#strings.startsWith(currentUri, '/admin/categories') ? 'active' : ''}">
+    <a class="nav-item"
+       th:classappend="${#strings.startsWith(currentUri, '/admin/categories') ? 'active' : ''}"
+       th:href="@{/admin/categories}">
       <span class="nav-icon">📁</span>
       <span>카테고리 관리</span>
     </a>
-    <a th:href="@{/admin/tags}" class="nav-item"
-       th:classappend="${#strings.startsWith(currentUri, '/admin/tags') ? 'active' : ''}">
+    <a class="nav-item"
+       th:classappend="${#strings.startsWith(currentUri, '/admin/tags') ? 'active' : ''}"
+       th:href="@{/admin/tags}">
       <span class="nav-icon">🏷️</span>
       <span>태그 관리</span>
     </a>
@@ -33,7 +37,7 @@
       <span>댓글 관리</span>
     </a>-->
     <div class="sidebar-divider"></div>
-    <a th:href="@{/posts}" class="nav-item">
+    <a class="nav-item" th:href="@{/posts}">
       <span class="nav-icon">🏠</span>
       <span>블로그 홈</span>
     </a>

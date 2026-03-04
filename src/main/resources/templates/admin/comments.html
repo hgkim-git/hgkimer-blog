@@ -65,10 +65,10 @@
       <div class="filter-group">
         <label class="filter-label">검색</label>
         <input
-            type="text"
             class="filter-input"
-            placeholder="작성자 또는 내용으로 검색..."
             id="searchInput"
+            placeholder="작성자 또는 내용으로 검색..."
+            type="text"
         >
       </div>
       <div class="filter-group">
@@ -114,7 +114,7 @@
         <thead>
         <tr>
           <th class="checkbox-col">
-            <input type="checkbox" class="checkbox" id="selectAll">
+            <input class="checkbox" id="selectAll" type="checkbox">
           </th>
           <th>작성자</th>
           <th>댓글 내용</th>
@@ -127,7 +127,7 @@
         <tbody>
         <tr>
           <td style="text-align: center;">
-            <input type="checkbox" class="checkbox row-checkbox" data-id="1">
+            <input class="checkbox row-checkbox" data-id="1" type="checkbox">
           </td>
           <td>
             <div class="comment-author">김개발</div>
@@ -135,7 +135,7 @@
           <td class="comment-content">
             <div class="comment-text">JWT 토큰 관리 방법에 대해 정말 자세하게 설명해주셔서 감사합니다.</div>
           </td>
-          <td><a href="#" class="post-link">Spring Security와 JWT를 활용한 인증 시스템 구현</a></td>
+          <td><a class="post-link" href="#">Spring Security와 JWT를 활용한 인증 시스템 구현</a></td>
           <td><span class="status-badge approved">승인됨</span></td>
           <td>2024.01.15</td>
           <td>
@@ -146,7 +146,7 @@
         </tr>
         <tr>
           <td style="text-align: center;">
-            <input type="checkbox" class="checkbox row-checkbox" data-id="2">
+            <input class="checkbox row-checkbox" data-id="2" type="checkbox">
           </td>
           <td>
             <div class="comment-author">박백엔드</div>
@@ -154,7 +154,7 @@
           <td class="comment-content">
             <div class="comment-text">N+1 문제 때문에 고생했는데 Fetch Join으로 해결했습니다.</div>
           </td>
-          <td><a href="#" class="post-link">JPA N+1 문제 완벽 정리 및 해결 방법</a></td>
+          <td><a class="post-link" href="#">JPA N+1 문제 완벽 정리 및 해결 방법</a></td>
           <td><span class="status-badge pending">승인 대기</span></td>
           <td>2024.01.14</td>
           <td>
