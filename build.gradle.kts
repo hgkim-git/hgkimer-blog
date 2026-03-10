@@ -107,6 +107,12 @@ dependencies {
     // Logging (SQL 바인딩 파라미터 출력)
     implementation("com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.2")
 
+    // flexmark
+    implementation("com.vladsch.flexmark:flexmark-all:0.64.8")
+
+    // jsoup HTML parser library @ https://jsoup.org/
+    implementation("org.jsoup:jsoup:1.22.1")
+
     // Test
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
