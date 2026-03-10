@@ -80,10 +80,9 @@
               Spring Security와 JWT를 결합하여 안전하고 확장 가능한 인증 시스템을 구현하는 방법을 단계별로 알아봅니다. Access Token과
               Refresh Token의 역할, 그리고 실전 예제 코드를 포함합니다.
             </p>
-            <div class="post-tags" th:each="tag : ${post.tags}">
-              <span class="tag" th:text="${tag.name}">Spring Security</span>
-              <!--<span class="tag">JWT</span>
-              <span class="tag">인증</span>-->
+            <div class="post-tags">
+              <span class="tag" th:each="tag : ${post.tags}"
+                    th:text="${tag.name}">Spring Security</span>
             </div>
             <div class="post-footer">
               <div class="post-stats">

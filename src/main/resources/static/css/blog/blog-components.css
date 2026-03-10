@@ -172,6 +172,7 @@
   margin-bottom: 16px;
   font-weight: 700;
   color: var(--text-primary);
+  scroll-margin-top: 96px;
 }
 
 .post-content h1 {
@@ -269,6 +270,21 @@
 
 .post-content tr:nth-child(even) td {
   background-color: var(--bg-secondary);
+}
+
+/* Back to list */
+.back-to-list {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  margin-bottom: 16px;
+  transition: color 0.2s;
+}
+
+.back-to-list:hover {
+  color: var(--color-primary);
 }
 
 /* TOC (Table of Contents) */

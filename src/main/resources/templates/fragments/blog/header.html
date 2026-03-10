@@ -14,9 +14,12 @@
       <a href="#" class="nav-link">태그</a>
       <a href="#" class="nav-link">소개</a>-->
     </nav>
-    <button class="theme-toggle-btn" id="themeToggle">
-      <span id="themeIcon">🌙</span>
-    </button>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <a class="admin-link" th:href="@{/admin}">관리자</a>
+      <button class="theme-toggle-btn" id="themeToggle">
+        <span id="themeIcon">🌙</span>
+      </button>
+    </div>
   </div>
 </header>
 </body>

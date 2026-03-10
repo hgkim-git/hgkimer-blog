@@ -11,6 +11,7 @@
   <div class="main-layout">
     <!-- TOC Sidebar -->
     <aside class="toc-sidebar">
+      <a class="back-to-list" th:href="@{/}">← 목록으로</a>
       <h3 class="toc-title">목차</h3>
       <ul class="toc-list">
         <!--<li class="toc-item">
@@ -43,7 +44,8 @@
             Spring Security와 JWT를 활용한 인증 시스템 구현
           </h1>
           <div class="post-detail-meta">
-            <span th:unless="${post.category == null}" class="post-category" th:text="${post.category.name}">Spring</span>
+            <span class="post-category" th:text="${post.category.name}"
+                  th:unless="${post.category == null}">Spring</span>
             <span class="post-date"
                   th:text="${'📅 ' + #temporals.format(post.createdAt, 'yyyy.MM.dd')}">📅 2024.01.15</span>
             <span class="stat-item" th:text="${'👁️ ' + post.viewCount}">👁️ 1,234</span>
@@ -54,7 +56,6 @@
                   th:text="${tag.name}">Spring Security</span>
           </div>
         </div>
-
         <!-- Post Content -->
         <div class="post-content" th:utext="${post.content}"></div>
       </article>
