@@ -24,7 +24,7 @@ import org.springframework.test.web.servlet.assertj.MockMvcTester;
 @WebMvcTest(CategoryApiController.class)
 class CategoryApiControllerTest {
 
-  private final String uriRoot = "/categories";
+  private final String uriRoot = "/api/categories";
   @Autowired
   private MockMvcTester mockMvcTester;
   @MockitoBean

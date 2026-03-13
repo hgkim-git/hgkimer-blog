@@ -34,7 +34,7 @@ import org.springframework.test.web.servlet.assertj.MockMvcTester;
 @WebMvcTest(PostApiController.class)
 class PostApiControllerTest {
 
-  private final String uriRoot = "/posts";
+  private final String uriRoot = "/api/posts";
   @Autowired
   private MockMvcTester mockMvcTester;
   @MockitoBean

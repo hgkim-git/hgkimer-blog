@@ -23,7 +23,7 @@ import org.springframework.test.web.servlet.assertj.MockMvcTester;
 @WebMvcTest(TagApiController.class)
 class TagApiControllerTest {
 
-  private final String uriRoot = "/tags";
+  private final String uriRoot = "/api/tags";
   @Autowired
   private MockMvcTester mockMvcTester;
   @MockitoBean
