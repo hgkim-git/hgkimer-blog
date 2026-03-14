@@ -183,6 +183,15 @@
       display: flex;
       gap: 12px;
       justify-content: flex-end;
+      position: fixed;
+      bottom: 0;
+      left: 260px;
+      right: 0;
+      padding: 14px 32px;
+      background-color: var(--bg-card);
+      border-top: 1px solid var(--border-color);
+      backdrop-filter: blur(8px);
+      z-index: 100;
     }
   </style>
 </head>
@@ -314,6 +323,9 @@
             </div>
           </div>
         </div>
+
+        <!-- 고정 버튼 바 높이만큼 하단 여백 -->
+        <div style="height: 64px;"></div>
 
         <!-- 액션 버튼 -->
         <div class="form-actions">
