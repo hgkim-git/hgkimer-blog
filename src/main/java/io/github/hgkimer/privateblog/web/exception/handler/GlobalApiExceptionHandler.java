@@ -57,7 +57,7 @@ public class GlobalApiExceptionHandler {
   protected ResponseEntity<ErrorResponse> handleIllegalArgumentException(
       IllegalArgumentException e) {
     log.error("Invalid input occurred: {}", e.getMessage(), e);
-    ErrorResponse errorResponse = ErrorResponse.of(ErrorCode.INVALID_INPUT, e.getMessage());
+    ErrorResponse errorResponse = ErrorResponse.of(ErrorCode.INVALID_INPUT);
     return ResponseEntity.badRequest().body(errorResponse);
   }
 

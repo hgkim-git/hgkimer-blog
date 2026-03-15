@@ -12,6 +12,7 @@ public record PostSummaryResponseDto(
     String title,
     String summary,
     String slug,
+    String status,
     Integer viewCount,
     LocalDateTime createdAt,
     List<TagResponseDto> tags
@@ -25,6 +26,7 @@ public record PostSummaryResponseDto(
         post.getTitle(),
         post.getSummary(),
         post.getSlug(),
+        post.getStatus().name(),
         post.getViewCount(),
         post.getCreatedAt(),
         post.getPostTags()
