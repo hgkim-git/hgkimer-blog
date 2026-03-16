@@ -13,8 +13,11 @@
     <aside class="blog-sidebar">
       <!-- Search -->
       <div class="search-box">
+        <label for="searchInput"></label>
         <input
+            autofocus
             class="search-input"
+            id="searchInput"
             placeholder="검색..."
             type="text"
         >
@@ -24,8 +27,14 @@
       <div class="sidebar-section">
         <h3 class="sidebar-title">카테고리</h3>
         <ul class="sidebar-list">
+          <li class="sidebar-item">
+            <a class="sidebar-link" th:href="@{/posts}">
+              <span>전체 게시글 보기</span>
+              <!--<span class="post-count" th:text="${category.postCount}">12</span>-->
+            </a>
+          </li>
           <li class="sidebar-item" th:each="category : ${categories}">
-            <a class="sidebar-link" th:href="@{/posts(categorySlug=${category.slug})}">
+            <a class="sidebar-link" th:href="@{/posts(category=${category.slug})}">
               <span th:text="${category.name}">Spring</span>
               <!--<span class="post-count" th:text="${category.postCount}">12</span>-->
             </a>
@@ -121,5 +130,8 @@
     </main>
   </div>
 </div>
+<th:block layout:fragment="scripts">
+  <script th:src="@{/js/blog/main.js}" type="module"></script>
+</th:block>
 </body>
 </html>
