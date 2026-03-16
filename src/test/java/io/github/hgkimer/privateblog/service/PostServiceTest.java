@@ -65,7 +65,7 @@ class PostServiceTest {
         .build();
     categoryRepository.save(category);
 
-    postCreateDto = new PostCreateDto(category.getId(), author.getEmail(),
+    postCreateDto = new PostCreateDto(category.getId(),
         "제목",
         "내용", "요약", "test-slug", "DRAFT",
         Collections.emptyList());
@@ -93,7 +93,7 @@ class PostServiceTest {
     Tag tag2 = Tag.builder().name("태그2").slug("tag-slug-2").build();
     tagRepository.save(tag2);
     List<Long> tagsIds = List.of(tag1.getId(), tag2.getId());
-    postCreateDto = new PostCreateDto(postCreateDto.categoryId(), postCreateDto.author(),
+    postCreateDto = new PostCreateDto(postCreateDto.categoryId(),
         postCreateDto.title(), postCreateDto.content(), postCreateDto.summary(),
         postCreateDto.slug(), postCreateDto.status(), tagsIds);
 
@@ -171,7 +171,7 @@ class PostServiceTest {
         tag2.getId()
     );
     Post saved = postService.createPost(new PostCreateDto(postCreateDto.categoryId(),
-        postCreateDto.author(), postCreateDto.title(), postCreateDto.content(),
+        postCreateDto.title(), postCreateDto.content(),
         postCreateDto.summary(),
         postCreateDto.slug(), postCreateDto.status(), tagIds));
     Tag newTag = Tag.builder().name("새로운 태그").slug("new-tag").build();
@@ -212,7 +212,6 @@ class PostServiceTest {
     Tag tag = tagRepository.save(Tag.builder().name("test-tag").slug("test-slug").build());
     postCreateDto = new PostCreateDto(
         categoryId,
-        postCreateDto.author(),
         postCreateDto.title(),
         postCreateDto.content(),
         postCreateDto.summary(),
@@ -238,7 +237,7 @@ class PostServiceTest {
   void given5PostCreated_whenRequestedAllPost_thenReturnPageOrderedByCreatedDate() {
     for (int i = 0; i < 5; i++) {
       postService.createPost(
-          new PostCreateDto(postCreateDto.categoryId(), postCreateDto.author(),
+          new PostCreateDto(postCreateDto.categoryId(),
               postCreateDto.title(), postCreateDto.content(), postCreateDto.summary(),
               "test-slug" + i, PostStatus.PUBLISHED.name(), List.of()));
     }
@@ -256,13 +255,13 @@ class PostServiceTest {
     Category category = categoryRepository.findById(postCreateDto.categoryId()).orElseThrow();
     for (int i = 0; i < 5; i++) {
       postService.createPost(
-          new PostCreateDto(postCreateDto.categoryId(), postCreateDto.author(),
+          new PostCreateDto(postCreateDto.categoryId(),
               "카테고리 있는 게시글" + i, postCreateDto.content(), postCreateDto.summary(),
               "categorized-slug" + i, PostStatus.PUBLISHED.name(), List.of()));
     }
     for (int i = 0; i < 5; i++) {
       postService.createPost(
-          new PostCreateDto(null, postCreateDto.author(),
+          new PostCreateDto(null,
               postCreateDto.title(), postCreateDto.content(), postCreateDto.summary(),
               "just-slug" + i, PostStatus.PUBLISHED.name(), List.of()));
     }
@@ -284,13 +283,13 @@ class PostServiceTest {
   void givenKeyword_whenSearch_thenReturnSearchResult() {
     for (int i = 0; i < 5; i++) {
       postService.createPost(
-          new PostCreateDto(null, postCreateDto.author(),
+          new PostCreateDto(null,
               "키워드 있는 게시글" + i, postCreateDto.content(), postCreateDto.summary(),
               "keyword-slug" + i, PostStatus.PUBLISHED.name(), List.of()));
     }
     for (int i = 0; i < 5; i++) {
       postService.createPost(
-          new PostCreateDto(null, postCreateDto.author(),
+          new PostCreateDto(null,
               "일반 게시글", postCreateDto.content(), postCreateDto.summary(),
               "just-slug" + i, PostStatus.PUBLISHED.name(), List.of()));
     }
