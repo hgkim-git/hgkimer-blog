@@ -29,17 +29,6 @@ class PostCreateDtoTest {
   }
 
   @Test
-  void givenInvalidEmail_whenValidate_thenHaveViolation() {
-    PostCreateDto invalidEmail = DtoBuilder.builder()
-        .author("invalid-email")
-        .build();
-    Set<ConstraintViolation<PostCreateDto>> violations = validator.validate(invalidEmail);
-    assertThat(violations).isNotEmpty().hasSize(1);
-    assertThat(violations).map(ConstraintViolation::getMessage).contains(
-        "Author must be a valid email address.");
-  }
-
-  @Test
   void givenInvalidStatus_whenValidate_thenHaveViolation() {
     PostCreateDto dto = DtoBuilder.builder().status("INVALID").build();
     Set<ConstraintViolation<PostCreateDto>> violations = validator.validate(dto);
@@ -52,7 +41,6 @@ class PostCreateDtoTest {
 
     private final List<Long> tagIds = List.of();
     private Long categoryId;
-    private String author;
     private String title;
     private String content;
     private String summary;
@@ -65,11 +53,6 @@ class PostCreateDtoTest {
 
     DtoBuilder categoryId(String category) {
       this.categoryId = Long.parseLong(category);
-      return this;
-    }
-
-    DtoBuilder author(String author) {
-      this.author = author;
       return this;
     }
 
@@ -99,9 +82,6 @@ class PostCreateDtoTest {
     }
 
     PostCreateDto build() {
-      if (author == null) {
-        author = "abc@abc.com";
-      }
       if (title == null) {
         title = "title";
       }
@@ -119,7 +99,6 @@ class PostCreateDtoTest {
       }
       return new PostCreateDto(
           categoryId,
-          author,
           title,
           content,
           summary,
