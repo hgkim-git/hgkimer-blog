@@ -1,4 +1,4 @@
-import {slugify} from "/js/utils/slug.js";
+import {slugify, normalizeSlugInput} from "/js/utils/slug.js";
 import {api} from "/js/utils/api.js";
 import {goTo} from "/js/utils/nav.js";
 
@@ -84,11 +84,8 @@ function handleSlugInput(event) {
     return;
   }
   const input = event.target;
-  const content = input.value
-  .toLowerCase()
-  .replace(/[^a-z0-9-]/g, '')
-  .replace(/--+/g, '-'); // 연속된 하이픈 제거
-  input.value = content
+  const content = normalizeSlugInput(input.value, 'post');
+  input.value = content;
   const slugCount = document.getElementById('slugCount');
   count(content, 250, slugCount);
 }

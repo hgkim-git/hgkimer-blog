@@ -15,3 +15,11 @@ export function slugify(text, type) {
   .replace(/-+$/, '')
   .substring(0, maxLength[type] || defaultMaxLength);
 }
+
+export function normalizeSlugInput(input, type) {
+  return input.toString()
+  .toLowerCase()
+  .replace(/[^a-z0-9-]/g, '')
+  .replace(/--+/g, '-')
+  .substring(0, maxLength[type] || defaultMaxLength);
+}
