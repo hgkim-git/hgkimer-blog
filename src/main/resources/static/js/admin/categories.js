@@ -68,7 +68,7 @@ document.getElementById('addCategoryForm').addEventListener('submit',
 categoryList.addEventListener('click', async (event) => {
   const target = event.target;
   const classList = target.classList;
-  if (!classList.contains('action-btn')) {
+  if (!classList.contains('category-action')) {
     return;
   }
   event.stopPropagation();
