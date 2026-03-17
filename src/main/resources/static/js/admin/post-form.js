@@ -1,4 +1,4 @@
-import {slugify, normalizeSlugInput} from "/js/utils/slug.js";
+import {normalizeSlugInput, slugify} from "/js/utils/slug.js";
 import {api} from "/js/utils/api.js";
 import {goTo} from "/js/utils/nav.js";
 
@@ -242,14 +242,13 @@ async function savePost() {
       status,
     };
     await api[method](url, params);
+    alert('게시글이 저장되었습니다.');
+    goTo('/admin/posts', {
+      cache: false,
+    });
   } catch (error) {
     alert('게시글 저장에 실패했습니다.');
-    return;
   }
-  alert('게시글이 저장되었습니다.');
-  goTo('/admin/posts', {
-    cache: false,
-  });
 }
 
 function count(text, limit, elem) {

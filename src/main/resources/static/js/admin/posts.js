@@ -90,14 +90,13 @@ async function deletePost(postId) {
   try {
     await api.delete('/api/posts/' + postId);
     alert('게시글이 삭제되었습니다.');
+    goTo({
+      cache: false,
+    });
   } catch (e) {
     console.error('게시글 삭제 중 오류 발생:', e);
     alert('게시글 삭제 중 오류가 발생했습니다. 다시 시도해주세요.');
-    return;
   }
-  goTo({
-    cache: false,
-  });
 }
 
 // 수정
