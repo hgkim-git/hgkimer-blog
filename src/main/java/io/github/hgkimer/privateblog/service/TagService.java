@@ -1,7 +1,9 @@
 package io.github.hgkimer.privateblog.service;
 
 import io.github.hgkimer.privateblog.domain.entity.Tag;
+import io.github.hgkimer.privateblog.persistence.jpa.PostTagRepository;
 import io.github.hgkimer.privateblog.persistence.jpa.TagRepository;
+import io.github.hgkimer.privateblog.web.dto.response.TagResponseDto;
 import io.github.hgkimer.privateblog.web.exception.ErrorCode;
 import io.github.hgkimer.privateblog.web.exception.ResourceNotFoundException;
 import java.util.List;
@@ -15,12 +17,14 @@ import org.springframework.transaction.annotation.Transactional;
 public class TagService {
 
   private final TagRepository tagRepository;
+  private final PostTagRepository postTagRepository;
 
   public Tag createTag(Tag tag) {
     return tagRepository.save(tag);
   }
 
   public void deleteTag(Long id) {
+    postTagRepository.deleteByTagId(id);
     tagRepository.deleteById(id);
   }
 
@@ -39,8 +43,8 @@ public class TagService {
   }
 
   @Transactional(readOnly = true)
-  public List<Tag> getAllTags() {
-    return tagRepository.findAllByOrderByNameAsc();
+  public List<TagResponseDto> getAllTags() {
+    return tagRepository.findAllWithPostCountOrderByName();
   }
 
 }

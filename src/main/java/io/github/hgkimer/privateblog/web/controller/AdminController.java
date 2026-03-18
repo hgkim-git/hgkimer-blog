@@ -1,6 +1,5 @@
 package io.github.hgkimer.privateblog.web.controller;
 
-import io.github.hgkimer.privateblog.domain.entity.Tag;
 import io.github.hgkimer.privateblog.domain.enums.PostStatus;
 import io.github.hgkimer.privateblog.service.CategoryService;
 import io.github.hgkimer.privateblog.service.PostService;
@@ -8,6 +7,7 @@ import io.github.hgkimer.privateblog.service.TagService;
 import io.github.hgkimer.privateblog.web.dto.response.CategoryResponseDto;
 import io.github.hgkimer.privateblog.web.dto.response.PostDetailResponseDto;
 import io.github.hgkimer.privateblog.web.dto.response.PostSummaryResponseDto;
+import io.github.hgkimer.privateblog.web.dto.response.TagResponseDto;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -97,7 +97,7 @@ public class AdminController {
   public String postForm(@RequestParam(required = false) Long id, Model model) {
     List<CategoryResponseDto> categories = categoryService.getAllCategories();
     model.addAttribute("categories", categories);
-    List<Tag> tags = tagService.getAllTags();
+    List<TagResponseDto> tags = tagService.getAllTags();
     model.addAttribute("tags", tags);
     if (id != null) {
       PostDetailResponseDto post = postService.getPostById(id);
@@ -115,6 +115,8 @@ public class AdminController {
 
   @GetMapping("/tags")
   public String tagManagement(Model model) {
+    List<TagResponseDto> tags = tagService.getAllTags();
+    model.addAttribute("tags", tags);
     return "admin/tags";
   }
 
