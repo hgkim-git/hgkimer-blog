@@ -27,13 +27,4 @@ class TagTest {
     assertEquals("test2", tag.getSlug());
   }
 
-  @Test
-  void changePostCount() {
-    Tag tag = mock();
-    tag.increasePostCount();
-    assertEquals(1, tag.getPostCount());
-
-    tag.decreasePostCount();
-    assertEquals(0, tag.getPostCount());
-  }
 }

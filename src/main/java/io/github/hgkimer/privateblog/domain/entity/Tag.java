@@ -30,9 +30,6 @@ public class Tag extends BaseTimeEntity {
   @Column(name = "slug", length = 50, nullable = false, unique = true)
   private String slug;
 
-  @Column(name = "post_count")
-  private Integer postCount = 0;
-
   @Builder
   public Tag(String name, String slug) {
     this.name = name;
@@ -48,13 +45,4 @@ public class Tag extends BaseTimeEntity {
     this.slug = slug;
   }
 
-  public void increasePostCount() {
-    this.postCount++;
-  }
-
-  public void decreasePostCount() {
-    if (this.postCount > 0) {
-      this.postCount--;
-    }
-  }
 }

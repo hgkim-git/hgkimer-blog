@@ -58,9 +58,7 @@ public class TagApiController {
 
   @GetMapping()
   public ResponseEntity<List<TagResponseDto>> getAllTags() {
-    List<TagResponseDto> responseDto = tagService.getAllTags().stream()
-        .map(TagResponseDto::from).toList();
-    return ResponseEntity.ok(responseDto);
+    return ResponseEntity.ok(tagService.getAllTags());
   }
 
 

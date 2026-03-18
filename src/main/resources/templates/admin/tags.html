@@ -46,7 +46,8 @@
       <div class="section-header">
         <div>
           <span class="section-title">태그</span>
-          <span class="section-count" id="tagCount">(12개)</span>
+          <span class="section-count" id="tagCount"
+                th:text="'(' + ${#lists.size(tags)} + '개)'">(0개)</span>
         </div>
       </div>
 
@@ -55,6 +56,7 @@
         <form id="addTagForm">
           <div class="form-row-2col">
             <div>
+              <label for="newTagName"></label>
               <input
                   class="form-input"
                   id="newTagName"
@@ -64,11 +66,11 @@
               >
             </div>
             <div>
+              <label for="newTagSlug"></label>
               <input
-                  class="form-input"
+                  class="form-input slug-input"
                   id="newTagSlug"
-                  maxlength="250"
-                  pattern="[a-z0-9-]+"
+                  maxlength="50"
                   placeholder="Slug (예: spring-security)"
                   required
                   type="text"
@@ -82,171 +84,30 @@
 
       <!-- Items List -->
       <div class="items-list" id="tagList">
-        <div class="item" data-id="1">
+        <div class="item" th:data-id="${tag.id}" th:each="tag : ${tags}">
           <div class="item-info">
-            <div class="item-name">JWT</div>
+            <div class="item-name" th:text="${tag.name}">태그명</div>
             <div class="item-meta">
-              <span>Slug: jwt</span>
-              <span style="margin-left: 12px;">게시글 3개</span>
+              <span th:text="'Slug: ' + ${tag.slug}">Slug: slug</span>
+              <span style="margin-left: 12px;"
+                    th:text="'게시글 ' + ${tag.postCount} + '개'">게시글 0개</span>
             </div>
           </div>
           <div class="item-actions">
-            <button class="action-btn edit" onclick="editTag(1)">수정</button>
-            <button class="action-btn delete" onclick="deleteTag(1)">삭제</button>
+            <button class="action-btn edit tag-action">수정</button>
+            <button class="action-btn delete tag-action">삭제</button>
           </div>
-        </div>
-
-        <div class="item" data-id="2">
-          <div class="item-info">
-            <div class="item-name">Spring Security</div>
-            <div class="item-meta">
-              <span>Slug: spring-security</span>
-              <span style="margin-left: 12px;">게시글 2개</span>
-            </div>
-          </div>
-          <div class="item-actions">
-            <button class="action-btn edit" onclick="editTag(2)">수정</button>
-            <button class="action-btn delete" onclick="deleteTag(2)">삭제</button>
-          </div>
-        </div>
-
-        <div class="item" data-id="3">
-          <div class="item-info">
-            <div class="item-name">JPA</div>
-            <div class="item-meta">
-              <span>Slug: jpa</span>
-              <span style="margin-left: 12px;">게시글 5개</span>
-            </div>
-          </div>
-          <div class="item-actions">
-            <button class="action-btn edit" onclick="editTag(3)">수정</button>
-            <button class="action-btn delete" onclick="deleteTag(3)">삭제</button>
-          </div>
-        </div>
-
-        <div class="item" data-id="4">
-          <div class="item-info">
-            <div class="item-name">성능최적화</div>
-            <div class="item-meta">
-              <span>Slug: performance-optimization</span>
-              <span style="margin-left: 12px;">게시글 4개</span>
-            </div>
-          </div>
-          <div class="item-actions">
-            <button class="action-btn edit" onclick="editTag(4)">수정</button>
-            <button class="action-btn delete" onclick="deleteTag(4)">삭제</button>
-          </div>
-        </div>
-
-        <div class="item" data-id="5">
-          <div class="item-info">
-            <div class="item-name">MySQL</div>
-            <div class="item-meta">
-              <span>Slug: mysql</span>
-              <span style="margin-left: 12px;">게시글 3개</span>
-            </div>
-          </div>
-          <div class="item-actions">
-            <button class="action-btn edit" onclick="editTag(5)">수정</button>
-            <button class="action-btn delete" onclick="deleteTag(5)">삭제</button>
-          </div>
-        </div>
-
-        <div class="item" data-id="6">
-          <div class="item-info">
-            <div class="item-name">인덱스</div>
-            <div class="item-meta">
-              <span>Slug: index</span>
-              <span style="margin-left: 12px;">게시글 2개</span>
-            </div>
-          </div>
-          <div class="item-actions">
-            <button class="action-btn edit" onclick="editTag(6)">수정</button>
-            <button class="action-btn delete" onclick="deleteTag(6)">삭제</button>
-          </div>
-        </div>
-
-        <div class="item" data-id="7">
-          <div class="item-info">
-            <div class="item-name">Docker</div>
-            <div class="item-meta">
-              <span>Slug: docker</span>
-              <span style="margin-left: 12px;">게시글 3개</span>
-            </div>
-          </div>
-          <div class="item-actions">
-            <button class="action-btn edit" onclick="editTag(7)">수정</button>
-            <button class="action-btn delete" onclick="deleteTag(7)">삭제</button>
-          </div>
-        </div>
-
-        <div class="item" data-id="8">
-          <div class="item-info">
-            <div class="item-name">CI/CD</div>
-            <div class="item-meta">
-              <span>Slug: ci-cd</span>
-              <span style="margin-left: 12px;">게시글 2개</span>
-            </div>
-          </div>
-          <div class="item-actions">
-            <button class="action-btn edit" onclick="editTag(8)">수정</button>
-            <button class="action-btn delete" onclick="deleteTag(8)">삭제</button>
-          </div>
-        </div>
-
-        <div class="item" data-id="9">
-          <div class="item-info">
-            <div class="item-name">Redis</div>
-            <div class="item-meta">
-              <span>Slug: redis</span>
-              <span style="margin-left: 12px;">게시글 2개</span>
-            </div>
-          </div>
-          <div class="item-actions">
-            <button class="action-btn edit" onclick="editTag(9)">수정</button>
-            <button class="action-btn delete" onclick="deleteTag(9)">삭제</button>
-          </div>
-        </div>
-
-        <div class="item" data-id="10">
-          <div class="item-info">
-            <div class="item-name">캐싱</div>
-            <div class="item-meta">
-              <span>Slug: caching</span>
-              <span style="margin-left: 12px;">게시글 2개</span>
-            </div>
-          </div>
-          <div class="item-actions">
-            <button class="action-btn edit" onclick="editTag(10)">수정</button>
-            <button class="action-btn delete" onclick="deleteTag(10)">삭제</button>
-          </div>
-        </div>
-
-        <div class="item" data-id="11">
-          <div class="item-info">
-            <div class="item-name">Stream API</div>
-            <div class="item-meta">
-              <span>Slug: stream-api</span>
-              <span style="margin-left: 12px;">게시글 1개</span>
-            </div>
-          </div>
-          <div class="item-actions">
-            <button class="action-btn edit" onclick="editTag(11)">수정</button>
-            <button class="action-btn delete" onclick="deleteTag(11)">삭제</button>
-          </div>
-        </div>
-
-        <div class="item" data-id="12">
-          <div class="item-info">
-            <div class="item-name">Java</div>
-            <div class="item-meta">
-              <span>Slug: java</span>
-              <span style="margin-left: 12px;">게시글 6개</span>
-            </div>
-          </div>
-          <div class="item-actions">
-            <button class="action-btn edit" onclick="editTag(12)">수정</button>
-            <button class="action-btn delete" onclick="deleteTag(12)">삭제</button>
+          <div class="edit-form" style="display: none;">
+            <input class="edit-input"
+                   th:data-pv="${tag.name}"
+                   th:id="'edit-name-' + ${tag.id}" th:value="${tag.name}"
+                   type="text">
+            <input class="edit-input slug-input"
+                   th:data-pv="${tag.slug}"
+                   th:id="'edit-slug-' + ${tag.id}" th:value="${tag.slug}"
+                   type="text">
+            <button class="btn btn-success save tag-action">저장</button>
+            <button class="btn btn-cancel cancel tag-action">취소</button>
           </div>
         </div>
       </div>
