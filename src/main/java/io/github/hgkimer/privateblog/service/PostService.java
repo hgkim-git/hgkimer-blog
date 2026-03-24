@@ -39,9 +39,7 @@ public class PostService {
 
   private final MarkdownService markdownService;
 
-  public Post createPost(PostCreateDto postCreateDto) {
-//    TODO: Security
-//    validateUser(postCreateDto.author());
+  public Post createPost(PostCreateDto postCreateDto, String email) {
     if (postCreateDto.categoryId() != null) {
       validateCategory(postCreateDto.categoryId());
     }
@@ -50,8 +48,7 @@ public class PostService {
       throw new DuplicateResourceException(ErrorCode.DUPLICATE_POST_SLUG,
           postCreateDto.slug());
     }
-    //TODO: Security
-    User user = getRequiredUser("hgkimer@gmail.com");
+    User user = getRequiredUser(email);
     Category category = getOptionalCategory(postCreateDto.categoryId());
     String htmlContent = markdownService.convertToHtml(postCreateDto.content());
     Post post = Post.of(
@@ -142,11 +139,6 @@ public class PostService {
         PostSummaryResponseDto::from);
   }
 
-  private void validateUser(String email) {
-    userRepository.findByEmail(email)
-        .orElseThrow(() -> new ResourceNotFoundException(ErrorCode.USER_NOT_FOUND, email));
-  }
-
   private void validateCategory(Long categoryId) {
     categoryRepository.findById(categoryId)
         .orElseThrow(() -> new ResourceNotFoundException(ErrorCode.CATEGORY_NOT_FOUND,
@@ -180,6 +172,7 @@ public class PostService {
     return Optional.ofNullable(categoryId)
         .flatMap(categoryRepository::findById).orElse(null);
   }
+
 
 }
 

@@ -1,3 +1,18 @@
+import {goTo} from '/js/utils/nav.js';
+
+// 로그아웃
+document.addEventListener('DOMContentLoaded', () => {
+  const logoutBtn = document.getElementById('logout-btn');
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', async () => {
+      await fetch('/api/auth/logout', {
+        method: 'POST',
+      });
+      goTo('/admin/login', {params: {logout: true}});
+    });
+  }
+});
+
 // 다크모드 토글 기능
 document.addEventListener('DOMContentLoaded', () => {
   const themeToggle = document.getElementById('themeToggle');
