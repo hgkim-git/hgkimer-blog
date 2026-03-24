@@ -76,7 +76,7 @@ public class BlogController {
       Model model) {
     PostDetailResponseDto post = postService.getPostBySlug(slug);
     model.addAttribute("post", post);
-    String contentHtml = post.content();
+    String contentHtml = post.contentHtml();
     model.addAttribute("tocHtml", markdownService.getTocHtml(contentHtml));
     return "blog/post-detail";
   }
