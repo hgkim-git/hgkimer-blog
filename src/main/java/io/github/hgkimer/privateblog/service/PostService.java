@@ -95,9 +95,14 @@ public class PostService {
         contentHtml,
         postUpdateDto.summary(),
         postUpdateDto.slug(),
-        postUpdateDto.status().toUpperCase(),
         category
     );
+    String status = postUpdateDto.status().toUpperCase();
+    if ("PUBLISHED".equals(status)) {
+      post.publish();
+    } else if ("DRAFT".equals(status)) {
+      post.draft();
+    }
     if (oldCategory != null) {
       oldCategory.decreasePostCount();
     }

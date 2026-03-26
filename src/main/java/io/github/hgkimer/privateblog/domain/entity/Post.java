@@ -121,7 +121,6 @@ public class Post extends BaseTimeEntity {
   }
 
   public void update(String title, String content, String contentHtml, String summary, String slug,
-      String status,
       Category category) {
     this.title = title;
     this.content = content;
@@ -129,7 +128,6 @@ public class Post extends BaseTimeEntity {
     this.summary = summary;
     this.slug = slug;
     this.category = category;
-    this.status = PostStatus.valueOf(status);
   }
 
 }
