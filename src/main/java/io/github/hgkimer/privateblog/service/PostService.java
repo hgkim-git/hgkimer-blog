@@ -76,10 +76,8 @@ public class PostService {
     }
     validateTags(postUpdateDto.tagIds());
 
-    Post post = postRepository.findByIdWithDetails(id);
-    if (post == null) {
-      throw new ResourceNotFoundException(ErrorCode.POST_NOT_FOUND, id.toString());
-    }
+    Post post = postRepository.findByIdWithDetails(id)
+        .orElseThrow(() -> new ResourceNotFoundException(ErrorCode.POST_NOT_FOUND, id.toString()));
 
     String slug = postUpdateDto.slug();
     if (!slug.equals(post.getSlug()) && postRepository.existsBySlug(postUpdateDto.slug())) {

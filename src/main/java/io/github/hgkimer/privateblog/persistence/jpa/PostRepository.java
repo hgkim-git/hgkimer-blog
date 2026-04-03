@@ -20,7 +20,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
       + "LEFT JOIN FETCH p.category "
       + "JOIN FETCH p.author "
       + "WHERE p.id = :id")
-  Post findByIdWithDetails(@Param("id") Long id);
+  Optional<Post> findByIdWithDetails(@Param("id") Long id);
 
   @Query("SELECT p FROM Post p "
       + "LEFT JOIN FETCH p.category "

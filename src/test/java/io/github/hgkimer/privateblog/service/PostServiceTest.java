@@ -186,7 +186,7 @@ class PostServiceTest {
 
     given(markdownService.convertToHtml(anyString())).willReturn("<p>테스트 내용</p>");
     given(categoryRepository.findById(2L)).willReturn(Optional.of(newCategory));
-    given(postRepository.findByIdWithDetails(postId)).willReturn(post);
+    given(postRepository.findByIdWithDetails(postId)).willReturn(Optional.of(post));
     given(postRepository.existsBySlug("new-slug")).willReturn(false);
 
     // when
@@ -235,7 +235,6 @@ class PostServiceTest {
     ReflectionTestUtils.setField(post, "slug", slug);
     ReflectionTestUtils.setField(post, "id", 1L);
     given(postRepository.findBySlugWithDetails(slug)).willReturn(Optional.of(post));
-    given(postRepository.findByIdWithDetails(post.getId())).willReturn(post);
 
     // when
     PostDetailResponseDto result = postService.getPostBySlug(slug);

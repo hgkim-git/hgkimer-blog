@@ -31,6 +31,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.assertj.MockMvcTester;
 
@@ -81,6 +82,7 @@ class PostApiControllerTest extends ControllerTestBase {
 
   @Test
   @DisplayName("유효한 JSON으로 게시글 생성 시 201 Created 응답을 반환해야 한다.")
+  @WithMockUser(username = "test@example.com", authorities = { "ADMIN"})
   void givenValidJSON_whenCreatePost_thenResponseCreated() {
     given(postService.createPost(any(), any())).willReturn(post);
     String json = """
