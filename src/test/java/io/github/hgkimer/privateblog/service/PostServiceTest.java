@@ -233,14 +233,17 @@ class PostServiceTest {
     String slug = "test-slug";
     Post post = PostFixtureFactory.createFixture();
     ReflectionTestUtils.setField(post, "slug", slug);
+    ReflectionTestUtils.setField(post, "id", 1L);
     given(postRepository.findBySlugWithDetails(slug)).willReturn(Optional.of(post));
+    given(postRepository.findByIdWithDetails(post.getId())).willReturn(post);
 
     // when
     PostDetailResponseDto result = postService.getPostBySlug(slug);
 
     // then
     assertThat(result).isNotNull();
-    assertThat(post.getViewCount()).isEqualTo(1);
+    assertThat(result.id()).isEqualTo(1L);
+    then(postRepository).should().increaseViewCount(post.getId());
   }
 
   @Test
