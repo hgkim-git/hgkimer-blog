@@ -18,6 +18,7 @@ import io.github.hgkimer.privateblog.web.exception.DuplicateResourceException;
 import io.github.hgkimer.privateblog.web.exception.ErrorCode;
 import io.github.hgkimer.privateblog.web.exception.ResourceNotFoundException;
 import jakarta.annotation.Nullable;
+import jakarta.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -36,6 +37,8 @@ public class PostService {
   private final UserRepository userRepository;
   private final CategoryRepository categoryRepository;
   private final TagRepository tagRepository;
+
+  private final EntityManager entityManager;
 
   private final MarkdownService markdownService;
 
@@ -130,7 +133,7 @@ public class PostService {
     Post post = postRepository.findBySlugWithDetails(slug)
         .orElseThrow(() -> new ResourceNotFoundException(ErrorCode.POST_NOT_FOUND, slug));
     postRepository.increaseViewCount(post.getId());
-    post.increaseViewCount();
+    entityManager.refresh(post);
     return PostDetailResponseDto.from(post);
   }
 
