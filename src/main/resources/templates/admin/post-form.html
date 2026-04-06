@@ -181,8 +181,8 @@
     /* 액션 버튼 */
     .form-actions {
       display: flex;
-      gap: 12px;
-      justify-content: flex-end;
+      align-items: center;
+      justify-content: space-between;
       position: fixed;
       bottom: 0;
       left: 260px;
@@ -192,6 +192,44 @@
       border-top: 1px solid var(--border-color);
       backdrop-filter: blur(8px);
       z-index: 100;
+    }
+
+    .form-actions-right {
+      display: flex;
+      gap: 12px;
+    }
+
+    /* 세그먼트 토글 */
+    .status-toggle {
+      display: flex;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .status-toggle input[type="radio"] {
+      display: none;
+    }
+
+    .status-toggle label {
+      padding: 7px 16px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      color: var(--text-secondary);
+      background-color: var(--bg-secondary);
+      transition: background-color 0.15s, color 0.15s;
+      user-select: none;
+    }
+
+    .status-toggle label:not(:last-child) {
+      border-right: 1px solid var(--border-color);
+    }
+
+    .status-toggle input[type="radio"]:checked + label {
+      background-color: var(--color-primary);
+      color: #fff;
+      border-color: var(--color-primary);
     }
   </style>
 </head>
@@ -310,27 +348,6 @@
           <textarea id="markdownEditor" th:text="${post != null ? post.content : ''}"></textarea>
         </div>
 
-        <!-- 게시 상태 -->
-        <div class="form-group">
-          <label class="form-label">게시 상태</label>
-          <div class="radio-group">
-            <label class="radio-label" for="status-published">
-              <input id="status-published" name="status"
-                     th:checked="${post != null and #strings.equalsIgnoreCase(post.status, 'PUBLISHED')}"
-                     type="radio"
-                     value="published">
-              <span>게시</span>
-            </label>
-            <label class="radio-label" for="status-draft">
-              <input id="status-draft" name="status"
-                     th:checked="${post == null or #strings.equalsIgnoreCase(post.status, 'DRAFT')}"
-                     type="radio"
-                     value="draft">
-              <span>임시 저장</span>
-            </label>
-          </div>
-        </div>
-
         <!-- 상태바 -->
         <div class="status-bar" style="margin-bottom: 24px;">
           <div class="status-bar-left">
@@ -350,8 +367,22 @@
 
         <!-- 액션 버튼 -->
         <div class="form-actions">
-          <button class="btn btn-secondary" id="cancelBtn" type="button">취소</button>
-          <button class="btn btn-primary" type="submit">게시하기</button>
+          <div class="status-toggle">
+            <input id="status-published" name="status"
+                   th:checked="${post != null and #strings.equalsIgnoreCase(post.status, 'PUBLISHED')}"
+                   type="radio"
+                   value="published">
+            <label for="status-published">게시</label>
+            <input id="status-draft" name="status"
+                   th:checked="${post == null or #strings.equalsIgnoreCase(post.status, 'DRAFT')}"
+                   type="radio"
+                   value="draft">
+            <label for="status-draft">임시 저장</label>
+          </div>
+          <div class="form-actions-right">
+            <button class="btn btn-secondary" id="cancelBtn" type="button">취소</button>
+            <button class="btn btn-primary" type="submit">게시하기</button>
+          </div>
         </div>
       </form>
     </div>
