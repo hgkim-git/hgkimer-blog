@@ -119,7 +119,8 @@
             <input aria-label="개별 선택" class="checkbox row-checkbox" type="checkbox">
           </td>
           <td class="post-title-cell">
-            <a class="post-title-link" target="_blank" th:href="${'/posts/' + post.slug}" th:text="${post.title}">Spring Security와 JWT를 활용한 인증
+            <a class="post-title-link" target="_blank" th:href="${'/posts/' + post.slug}"
+               th:text="${post.title}">Spring Security와 JWT를 활용한 인증
               시스템 구현</a>
           </td>
           <td th:text="${post.category == null ? '' : post.category.name}">Spring</td>
