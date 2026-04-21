@@ -246,6 +246,7 @@ class PostServiceTest {
     // then
     assertThat(result).isNotNull();
     assertThat(result.id()).isEqualTo(1L);
+    // noinspection resource
     then(entityManager).should().refresh(post);
     ReflectionTestUtils.setField(post, "viewCount", post.getViewCount() + 1);
     then(postRepository).should().increaseViewCount(post.getId());
