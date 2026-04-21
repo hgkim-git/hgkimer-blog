@@ -4,6 +4,9 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
   <title th:text="${post.title}">제목</title>
+  <meta name="description" th:content="${post.summary}"/>
+  <meta property="og:title" th:content="${post.title}"/>
+  <meta property="og:description" th:content="${post.summary}"/>
   <link rel="stylesheet" th:href="@{/js/lib/highlight/atom-one-dark.min.css}">
 </head>
 <body>
