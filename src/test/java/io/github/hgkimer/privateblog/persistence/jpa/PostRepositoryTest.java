@@ -181,5 +181,26 @@ class PostRepositoryTest {
     assertThat(postsByCategoryId).allMatch(p -> p.getTitle().contains("카테고리 속한 게시글"));
   }
 
+  @Test
+  @DisplayName("상태별 게시글 전체 조회 시 해당 상태의 게시글만 반환해야 한다.")
+  void givenStatus_whenFindAllPostByStatus_thenReturnMatchingPosts() {
+    for (int i = 0; i < 3; i++) {
+      postRepository.save(
+          PostFixtureFactory.createFixture(category, author, "발행 게시글" + i, "published-" + i,
+              PostStatus.PUBLISHED));
+    }
+    for (int i = 0; i < 2; i++) {
+      postRepository.save(
+          PostFixtureFactory.createFixture(category, author, "임시 게시글" + i, "draft-" + i,
+              PostStatus.DRAFT));
+    }
+    entityManager.flush();
+    entityManager.clear();
+
+    List<Post> result = postRepository.findAllPostByStatus(PostStatus.PUBLISHED);
+
+    assertThat(result).hasSize(3);
+    assertThat(result).allMatch(p -> p.getStatus() == PostStatus.PUBLISHED);
+  }
 
 }
