@@ -272,4 +272,23 @@ class PostServiceTest {
     then(postRepository).should().findAllPosts(null, PostStatus.PUBLISHED, null, pageable);
   }
 
+  @Test
+  @DisplayName("발행된 게시글 전체 조회 시 PUBLISHED 상태의 게시글 목록을 반환해야 한다.")
+  void testGetAllPublishedPosts() {
+    // given
+    List<Post> published = List.of(
+        PostFixtureFactory.createFixture(),
+        PostFixtureFactory.createFixture()
+    );
+    given(postRepository.findAllPostByStatus(PostStatus.PUBLISHED)).willReturn(published);
+
+    // when
+    List<Post> result = postService.getAllPublishedPosts();
+
+    // then
+    assertThat(result).hasSize(2);
+    assertThat(result).allMatch(p -> p.getStatus() == PostStatus.PUBLISHED);
+    then(postRepository).should().findAllPostByStatus(PostStatus.PUBLISHED);
+  }
+
 }
