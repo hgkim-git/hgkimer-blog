@@ -31,7 +31,11 @@ public enum ErrorCode {
   // User errors
   USER_NOT_FOUND(HttpStatus.NOT_FOUND, "U001", "User not found"),
   BAD_CREDENTIALS(HttpStatus.UNAUTHORIZED, "U002", "Invalid username or password"),
-  UNAUTHORIZED_ACCESS(HttpStatus.UNAUTHORIZED, "U003", "Authentication required");
+  UNAUTHORIZED_ACCESS(HttpStatus.UNAUTHORIZED, "U003", "Authentication required"),
+
+  // Infrastructure errors
+  INFRASTRUCTURE_ERROR(HttpStatus.SERVICE_UNAVAILABLE, "I001",
+      "Infrastructure error. Please try again later.");
 
   private final HttpStatus httpStatus;
   private final String code;
