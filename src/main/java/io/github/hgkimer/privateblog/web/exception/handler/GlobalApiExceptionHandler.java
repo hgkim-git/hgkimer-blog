@@ -9,6 +9,10 @@ import jakarta.validation.ConstraintViolationException;
 import java.util.List;
 import java.util.Set;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.QueryTimeoutException;
+import org.springframework.data.redis.RedisConnectionFailureException;
+import org.springframework.data.redis.RedisSystemException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -60,6 +64,14 @@ public class GlobalApiExceptionHandler {
     log.error("Invalid input occurred: {}", e.getMessage(), e);
     ErrorResponse errorResponse = ErrorResponse.of(ErrorCode.INVALID_INPUT);
     return ResponseEntity.badRequest().body(errorResponse);
+  }
+
+  @ExceptionHandler({RedisConnectionFailureException.class, QueryTimeoutException.class,
+      RedisSystemException.class})
+  protected ResponseEntity<ErrorResponse> handleRedisException(Exception e) {
+    log.error("Redis infrastructure error: {}", e.getMessage(), e);
+    ErrorResponse errorResponse = ErrorResponse.of(ErrorCode.INFRASTRUCTURE_ERROR);
+    return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(errorResponse);
   }
 
   @ExceptionHandler(BadCredentialsException.class)

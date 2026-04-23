@@ -11,6 +11,17 @@ spring:
       username: ${REDIS_USER}
       password: ${REDIS_PASSWORD}
       # database: ${REDIS_DATABASE:0} # 로컬에서만 Redis Cloud는 선택 불가
+      timeout: 3000ms
+      connect-timeout: 3000ms
+      lettuce:
+        pool:
+          enabled: true
+          max-active: 4
+          max-idle: 4
+          min-idle: 1
+          max-wait: 500ms
+          time-between-eviction-runs: 30s
+        shutdown-timeout: 200ms
   jpa:
     hibernate:
       ddl-auto: validate
