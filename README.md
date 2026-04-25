@@ -1,6 +1,8 @@
 # Blog Project
 
-개인 블로그 프로젝트입니다. Spring Boot 기반의 풀스택 웹 애플리케이션으로, 직접 설계하고 구현했습니다.
+개인 블로그 프로젝트입니다. Spring Boot 기반의 풀스택 웹 애플리케이션으로,
+
+디자인(HTML+CSS)은 AI(Claude Code, Codex, Gemini)에게 위임하고 백엔드에 집중하여 직접 설계 및 구현한 프로젝트입니다.
 
 **[hgkimer.me](https://hgkimer.me)** 에서 확인하실 수 있습니다.
 
