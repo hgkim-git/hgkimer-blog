@@ -33,6 +33,9 @@ group = "io.github.hgkimer"
 version = "0.0.1-SNAPSHOT"
 description = "Private blog project"
 
+// CVE-2025-48924: commons-lang3 < 3.18.0 uncontrolled recursion vulnerability
+extra["commons-lang3.version"] = "3.18.0"
+
 /*
 	확장 설정 블록 (Extension configuration block)
 		- 혹은 Gradle extension 블록
