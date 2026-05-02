@@ -60,6 +60,8 @@
 
 ## 아키텍처
 
+<img width="1439" height="657" alt="Untitled-2026-03-21-2133" src="https://github.com/user-attachments/assets/81d5080a-6e54-4a35-9b15-671531876343" />
+
 ```
 Client
   │
