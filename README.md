@@ -20,7 +20,7 @@
 | 분류                  | 기술                                                                                                            |
 |---------------------|---------------------------------------------------------------------------------------------------------------|
 | **Language**        | Java 17                                                                                                       |
-| **Framework**       | Spring Boot 3.5, Spring Security, Spring Data JPA                                                             |
+| **Framework**       | Spring Boot 3.5.9, Spring Security, Spring Data JPA                                                          |
 | **Template**        | Thymeleaf                                                                                                     |
 | **Database**        | MySQL 8.0, Redis                                                                                              |
 | **ORM / Migration** | Hibernate, Flyway                                                                                             |
@@ -44,13 +44,15 @@
 - 키워드 검색 및 카테고리 필터링 (페이지네이션)
 - Spring AI + Google Gemini 기반 게시글 AI 요약 생성 (ADMIN 전용)
 - IP 기반 방문자 통계 (일별 중복 방문 제거, 어드민 대시보드에서 오늘/전체 방문자 수 확인)
+- `sitemap.xml` 자동 생성 (발행된 게시글 기반, 인메모리 캐시 적용)
+- 커스텀 에러 페이지 (400 / 403 / 404 / 500) 및 전역 예외 핸들러
 
 ### 인증 / 보안
 
 - JWT 기반 인증 (Access Token + Refresh Token)
 - **Refresh Token Rotation** — 토큰 재발급 시 기존 토큰 무효화
 - **Redis 기반 토큰 블랙리스트** — 로그아웃 시 즉시 무효화
-- 로그인 엔드포인트 **Rate Limiting** (Nginx, Brute-Force 방어)
+- 로그인 엔드포인트 **Rate Limiting** (Nginx, `/api/auth/login` + `/admin/login`, Brute-Force 방어)
 - HTTPS 적용 (Certbot / Let's Encrypt)
 - HttpOnly + Secure 쿠키로 토큰 전달
 
@@ -173,7 +175,9 @@ private_blog/
 │   └── web/
 │       ├── controller/    # REST API + Thymeleaf View Controller
 │       ├── dto/           # Request / Response DTO
+│       ├── flexmark/      # CustomAttributeProvider (마크다운 렌더링 확장)
 │       ├── interceptor/   # VisitInterceptor (IP 기반 방문 기록)
+│       ├── support/       # JwtTokenCookieManager
 │       └── exception/     # 전역 예외 처리
 ├── src/main/resources/
 │   ├── db/migration/      # Flyway SQL 마이그레이션
